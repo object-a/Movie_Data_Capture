@@ -237,12 +237,12 @@ def main(number):
         # javdb sometime returns multiple results,
         # and the first elememt maybe not the one we are looking for
         # iterate all candidates and find the match one
-        urls = html.xpath('//*[@id="videos"]/div/div/a/@href')
+        urls = html.xpath('//*[@class="item"]/a/@href')
         # 记录一下欧美的ids  ['Blacked','Blacked']
         if re.search(r'[a-zA-Z]+\.\d{2}\.\d{2}\.\d{2}', number):
             correct_url = urls[0]
         else:
-            ids = html.xpath('//*[@id="videos"]/div/div/a/div[contains(@class, "uid")]/text()')
+            ids = html.xpath('//*[@class="item"]/a/div[contains(@class, "video-title")]/strong/text()')
             try:
                 correct_url = urls[ids.index(number)]
             except:
